@@ -10,6 +10,6 @@ interface UserAccountDao {
     @Insert
     fun insert(account: UserAccount)
 
-    @Query("SELECT * FROM useraccounts WHERE useraccounts.username LIKE :username ")
+    @Query("SELECT * FROM useraccounts WHERE useraccounts.username LIKE :username "+  "AND useraccounts.password LIKE :password")
     fun getAccount(username: String): UserAccount
 }

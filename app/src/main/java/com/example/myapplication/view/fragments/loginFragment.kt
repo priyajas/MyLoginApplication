@@ -7,9 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
+import com.example.myapplication.util.ValidationUtil
 import com.example.myapplication.viewmodel.UserViewModel
+import com.example.myapplication.viewmodel.UserViewModelFactory
 import kotlinx.android.synthetic.main.fragment_login.*
 
 
@@ -22,9 +25,21 @@ class loginFragment : Fragment(R.layout.fragment_login) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        usernameText = view.findViewById(R.id.input_email)
+        passwordText = view.findViewById<View>(R.id.input_password) as EditText
+        loginButton = view.findViewById<View>(R.id.btn_login) as Button
         btn_register.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment) }
+    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        userViewModel = ViewModelProviders.of(this, UserViewModelFactory(this)).get(UserViewModel::class.java)
+
+        loginButton!!.setOnClickListener {
+            userViewModel!!.checkValidLogin(usernameText!!.text.toString(), passwordText!!.text.toString())
+            ValidationUtil.showToast(getApplicationContext(),"Successfully Logged in!")
+
+        }
     }
 
     override fun onCreateView(

@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.myapplication.R
+import com.example.myapplication.util.ValidationUtil
 import com.example.myapplication.viewmodel.UserViewModel
 import com.example.myapplication.viewmodel.UserViewModelFactory
 
@@ -38,7 +39,7 @@ class registerFragment : Fragment(R.layout.fragment_register) {
         signUpButton!!.setOnClickListener {
             userViewModel!!.createUser(usernameText!!.text.toString(), passwordText!!.text.toString())
 
-            //Toast.makeText(getApplicationContext(), "Successfully Created An Account!", Toast.LENGTH_LONG).show()
+            ValidationUtil.showToast(getApplicationContext(), "Successfully Created An Account!")
         }
     }
 
