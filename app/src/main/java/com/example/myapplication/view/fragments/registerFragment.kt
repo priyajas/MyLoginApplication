@@ -1,32 +1,44 @@
 package com.example.myapplication.view.fragments
 
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import com.example.myapplication.R
+import com.example.myapplication.viewmodel.UserViewModel
+import com.example.myapplication.viewmodel.UserViewModelFactory
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [registerFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class registerFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class registerFragment : Fragment(R.layout.fragment_register) {
+
+    private var userViewModel: UserViewModel? = null
+    private var usernameText: EditText? = null
+    private var passwordText: EditText? = null
+    private var cpasswordText: EditText? = null
+    private var signUpButton: Button? = null
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        usernameText = view.findViewById(R.id.input_email)
+        passwordText = view.findViewById<View>(R.id.input_password) as EditText
+        cpasswordText = view.findViewById<View>(R.id.confirminput_password) as EditText
+        signUpButton = view.findViewById<View>(R.id.link_signup) as Button
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+        userViewModel = ViewModelProviders.of(this, UserViewModelFactory(this)).get(UserViewModel::class.java)
+
+        signUpButton!!.setOnClickListener {
+            userViewModel!!.createUser(usernameText!!.text.toString(), passwordText!!.text.toString())
+
+            //Toast.makeText(getApplicationContext(), "Successfully Created An Account!", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -36,25 +48,10 @@ class registerFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_register, container, false)
-    }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment registerFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            registerFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+
     }
 }
+
+
+

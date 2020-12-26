@@ -59,7 +59,7 @@
 
 
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/link_signup"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
