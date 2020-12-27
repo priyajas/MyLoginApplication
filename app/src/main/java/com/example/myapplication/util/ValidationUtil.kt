@@ -52,4 +52,3 @@ object ValidationUtil {
         return false
     }
 }
-}
