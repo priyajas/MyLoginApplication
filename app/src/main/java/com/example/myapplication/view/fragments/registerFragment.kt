@@ -34,12 +34,12 @@ class registerFragment : Fragment(R.layout.fragment_register) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        userViewModel = ViewModelProviders.of(this, UserViewModelFactory(this)).get(UserViewModel::class.java)
+       // userViewModel = ViewModelProviders.of(this, UserViewModelFactory(this)).get(UserViewModel::class.java)
 
         signUpButton!!.setOnClickListener {
             userViewModel!!.createUser(usernameText!!.text.toString(), passwordText!!.text.toString())
 
-            ValidationUtil.showToast(getApplicationContext(), "Successfully Created An Account!")
+            //ValidationUtil.showToast(getApplicationContext(), "Successfully Created An Account!")
         }
     }
 

@@ -2,9 +2,11 @@ package com.example.myapplication.viewmodel
 
 import android.content.Context
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.model.database.UserAccountDatabase
+import com.example.myapplication.model.entity.UserAccount
 import com.example.myapplication.model.repository.UserRepository
 
 class UserViewModel(context:Context) : ViewModel() {
@@ -20,7 +22,7 @@ class UserViewModel(context:Context) : ViewModel() {
         userRepository.insertUser(username, password)
     }
 
-    internal fun checkValidLogin(username: String, password: String): Boolean {
+    internal fun checkValidLogin(username: String, password: String): LiveData<MutableList<UserAccount>> {
         return userRepository.isValidAccount(username, password)
     }
 

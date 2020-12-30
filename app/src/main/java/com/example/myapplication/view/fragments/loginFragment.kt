@@ -30,16 +30,18 @@ class loginFragment : Fragment(R.layout.fragment_login) {
         loginButton = view.findViewById<View>(R.id.btn_login) as Button
         btn_register.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment) }
+        loginButton!!.setOnClickListener {
+            // userViewModel!!.checkValidLogin(usernameText!!.text.toString(), passwordText!!.text.toString())
+            // ValidationUtil.showToast(getApplicationContext(),"Successfully Logged in!")
+            btn_login.setOnClickListener {
+                findNavController().navigate(R.id.action_loginFragment_to_listFragment)}
+        }
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        userViewModel = ViewModelProviders.of(this, UserViewModelFactory(this)).get(UserViewModel::class.java)
+      //  userViewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
 
-        loginButton!!.setOnClickListener {
-            userViewModel!!.checkValidLogin(usernameText!!.text.toString(), passwordText!!.text.toString())
-            ValidationUtil.showToast(getApplicationContext(),"Successfully Logged in!")
 
-        }
     }
 
     override fun onCreateView(
