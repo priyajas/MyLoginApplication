@@ -5,9 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 import com.example.myapplication.R
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.fragment_address.*
 import kotlinx.android.synthetic.main.item_user.view.*
 
@@ -15,7 +18,9 @@ import kotlinx.android.synthetic.main.item_user.view.*
 class AddressFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit var googleMap: GoogleMap
-    private var userid=0
+    private var lat=00.0
+    private var lng=00.0
+    val args: ListFragmentArgs by navArgs()
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -34,15 +39,15 @@ class AddressFragment : Fragment(), OnMapReadyCallback {
 
     override fun onMapReady(map: GoogleMap?) {
         map?.let {
-            googleMap = it
+            val markerm=LatLng(lat,lng)
+            googleMap.addMarker(MarkerOptions().position(markerm).title("User location"))
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        arguments?.let {
-            //userid=AddressFragmentArgs.fromBundle(it).userid
-        }
+         lat= args.lat.toDouble()
+         lng= args.lng.toDouble()
     }
 
 

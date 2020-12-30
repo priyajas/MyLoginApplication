@@ -44,15 +44,23 @@
             android:id="@+id/action_listFragment_to_addressFragment"
             app:destination="@id/addressFragment" />
         <argument
-            android:name="userid"
-            android:defaultValue="0"
-            app:argType="integer"></argument>
+            android:name="lat"
+            app:argType="float"></argument>
+        <argument
+            android:name="lng"
+            app:argType="float"></argument>
     </fragment>
     <fragment
         android:id="@+id/addressFragment"
         android:name="com.example.myapplication.view.fragments.AddressFragment"
         android:label="fragment_address"
         tools:layout="@layout/fragment_address" >
+        <argument
+            android:name="lat"
+            app:argType="String"></argument>
+        <argument
+            android:name="lng"
+            app:argType="String"></argument>
         <action
             android:id="@+id/action_addressFragment_to_listFragment"
             app:destination="@id/listFragment" />

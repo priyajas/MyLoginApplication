@@ -7,7 +7,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.model.entity.UserList
-import com.example.myapplication.view.fragments.ListFragment
+import com.example.myapplication.view.fragments.ListFragmentDirections
 import kotlinx.android.synthetic.main.item_user.view.*
 
 class UsersListAdapter(val usersList: ArrayList<UserList>) :
@@ -39,9 +39,14 @@ class UsersListAdapter(val usersList: ArrayList<UserList>) :
         holder.view.website.text = usersList[position].website
         holder.view.company.text = usersList[position].company.name
         holder.view.setOnClickListener{
-            Navigation.findNavController(it).navigate(R.id.action_listFragment_to_addressFragment)
+            val lat = usersList[position].address.geo.lat
+            val lng = usersList[position].address.geo.lng
+            val action=ListFragmentDirections.actionListFragmentToAddressFragment(lat,lng)
+            Navigation.findNavController(it).navigate(action)
+
+            }
         }
 
 
+
     }
-}
