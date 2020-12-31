@@ -39,8 +39,9 @@ class UsersListAdapter(val usersList: ArrayList<UserList>) :
         holder.view.website.text = usersList[position].website
         holder.view.company.text = usersList[position].company.name
         holder.view.setOnClickListener{
-            val lat = usersList[position].address.geo.lat
-            val lng = usersList[position].address.geo.lng
+            val lat = usersList[position].address.geo.lat.toFloat()
+            val lng = usersList[position].address.geo.lng.toFloat()
+             println( "lat is $lat and lng is $lng");
             val action=ListFragmentDirections.actionListFragmentToAddressFragment(lat,lng)
             Navigation.findNavController(it).navigate(action)
 

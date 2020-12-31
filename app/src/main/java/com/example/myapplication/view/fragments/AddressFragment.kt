@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.example.myapplication.R
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.fragment_address.*
@@ -18,8 +20,8 @@ import kotlinx.android.synthetic.main.item_user.view.*
 class AddressFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit var googleMap: GoogleMap
-    private var lat=00.0
-    private var lng=00.0
+    private var lat=000.0
+    private var lng=000.0
     val args: ListFragmentArgs by navArgs()
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -39,8 +41,13 @@ class AddressFragment : Fragment(), OnMapReadyCallback {
 
     override fun onMapReady(map: GoogleMap?) {
         map?.let {
-            val markerm=LatLng(lat,lng)
-            googleMap.addMarker(MarkerOptions().position(markerm).title("User location"))
+            googleMap=map
+            val markerm=  LatLng(lat,lng)
+            println( "lataddress is $lat and lngaddress is $lng");
+            googleMap.addMarker(MarkerOptions().position(markerm).title("User location").icon(BitmapDescriptorFactory
+                .defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(markerm, 5F))
+            googleMap.animateCamera(CameraUpdateFactory.zoomTo(5F), 2000, null);
         }
     }
 

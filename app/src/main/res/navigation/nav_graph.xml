@@ -57,10 +57,10 @@
         tools:layout="@layout/fragment_address" >
         <argument
             android:name="lat"
-            app:argType="String"></argument>
+            app:argType="float"></argument>
         <argument
             android:name="lng"
-            app:argType="String"></argument>
+            app:argType="float"></argument>
         <action
             android:id="@+id/action_addressFragment_to_listFragment"
             app:destination="@id/listFragment" />
