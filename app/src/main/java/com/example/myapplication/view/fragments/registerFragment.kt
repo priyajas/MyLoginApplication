@@ -38,12 +38,22 @@ class registerFragment : Fragment(R.layout.fragment_register) {
                 if (ValidationUtil.isValidPassword(globalContext as FragmentActivity, passwordText.text.toString())) {
                     if (ValidationUtil.isValidConfirmPassword(globalContext as FragmentActivity, passwordText.text.toString())) {
                         if (ValidationUtil.ismatchPassword(globalContext as FragmentActivity, passwordText.text.toString(),cpasswordText.text.toString())) {
-                            userViewModel!!.createUser(
+                           val accountresult=userViewModel!!.createUser(
                                 usernameText!!.text.toString(),
                                 passwordText!!.text.toString()
                             )
-                            ValidationUtil.showToast(globalContext as FragmentActivity, "Successfully Created An Account!")
-                            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+                            print("accountresult is $accountresult")
+                            if(accountresult.equals(null)){
+                                ValidationUtil.showToast(
+                                    globalContext as FragmentActivity,
+                                    "Account not Created..!! Try Again")
+                            }else {
+                                ValidationUtil.showToast(
+                                    globalContext as FragmentActivity,
+                                    "Successfully Created An Account!"
+                                )
+                                findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+                            }
                         }
                     }
                 }

@@ -18,8 +18,9 @@ class UserViewModel(context:Context) : ViewModel() {
         userRepository = UserRepository.getInstance(UserAccountDatabase.getAppDatabase(context).userAccountDao())
     }
 
-    internal fun createUser(username: String, password: String) {
-        userRepository.insertUser(username, password)
+    internal fun  createUser(username: String, password: String): Long {
+        val result =userRepository.insertUser(username, password)
+        return result
     }
 
     internal fun checkValidLogin(username: String, password: String): LiveData<MutableList<UserAccount>> {

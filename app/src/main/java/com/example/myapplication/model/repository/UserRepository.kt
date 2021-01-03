@@ -9,13 +9,14 @@ class UserRepository private constructor(private val userAccountDao: UserAccount
 
     fun isValidAccount(username: String, password: String): LiveData<MutableList<UserAccount>> {
 
-        val userAccount = userAccountDao.getAccount()
+        val userAccount = userAccountDao.getAccount(username,password)
+
         return userAccount
     }
 
-    fun insertUser(username: String, password: String) {
-        val account = UserAccount(username, password)
-        userAccountDao.insert(account)
+    fun insertUser(username: String, password: String): Long {
+       val account = UserAccount()
+        return userAccountDao.insert(account)
     }
 
     companion object {

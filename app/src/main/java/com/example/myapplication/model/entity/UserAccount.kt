@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName="useraccounts")
-class UserAccount(username: String, password: String) {
+class UserAccount() {
 
     @PrimaryKey
     @ColumnInfo(name="userid")
@@ -16,7 +16,5 @@ class UserAccount(username: String, password: String) {
 
     @ColumnInfo(name="password")
     var password:String? = null
-
-
 
 }
