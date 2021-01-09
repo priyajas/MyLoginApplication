@@ -1,10 +1,8 @@
 package com.example.myapplication.view.fragments
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.example.myapplication.R
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -14,7 +12,6 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.fragment_address.*
-import kotlinx.android.synthetic.main.item_user.view.*
 
 
 class AddressFragment : Fragment(), OnMapReadyCallback {
@@ -56,6 +53,7 @@ class AddressFragment : Fragment(), OnMapReadyCallback {
          lat= args.lat.toDouble()
          lng= args.lng.toDouble()
     }
+
 
 
 }

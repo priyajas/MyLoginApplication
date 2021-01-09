@@ -13,8 +13,8 @@ interface UserAccountDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(userAccount: UserAccount):Long
 
-    @Query("SELECT * FROM useraccounts where  username like :username and password like :password")
-    open fun getAccount(username: String, password: String): LiveData<MutableList<UserAccount>>
+    @Query("SELECT * FROM useraccounts where  username like :username")
+    open fun getAccount(username: String): UserAccount
 
 
 }

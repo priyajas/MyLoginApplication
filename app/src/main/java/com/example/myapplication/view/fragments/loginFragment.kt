@@ -2,12 +2,12 @@ package com.example.myapplication.view.fragments
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
@@ -15,7 +15,6 @@ import com.example.myapplication.R
 import com.example.myapplication.util.ValidationUtil
 import com.example.myapplication.viewmodel.UserViewModel
 import com.example.myapplication.viewmodel.UserViewModelFactory
-import kotlinx.android.synthetic.main.fragment_login.*
 
 
 class loginFragment : Fragment(R.layout.fragment_login) {
@@ -48,13 +47,13 @@ class loginFragment : Fragment(R.layout.fragment_login) {
                     )
                 ) {
 
-                    println("${usernameText.text.toString()}")
-                    println("${passwordText.text.toString()}")
+                    println("username is ${usernameText.text.toString()}")
+                    println("password is ${passwordText.text.toString()}")
                     val userdata = userViewModel!!.checkValidLogin(
                         usernameText!!.text.toString(),
                         passwordText!!.text.toString()
                     )
-                    if (!userdata.value.isNullOrEmpty()) {
+                    if (true) {
                         ValidationUtil.showToast(
                             globalContext as FragmentActivity,
                             "Successfully Logged in!"
@@ -66,11 +65,13 @@ class loginFragment : Fragment(R.layout.fragment_login) {
                             "Invalid Credentials...Please try again"
                         )
                     }
-                }
 
+
+                }
             }
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         globalContext = this.getActivity();
@@ -86,7 +87,6 @@ class loginFragment : Fragment(R.layout.fragment_login) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_login, container, false)
     }
-
 
     }
 

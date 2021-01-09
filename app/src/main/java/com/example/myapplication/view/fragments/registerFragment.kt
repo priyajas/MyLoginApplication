@@ -32,11 +32,12 @@ class registerFragment : Fragment(R.layout.fragment_register) {
         passwordText = view.findViewById<View>(R.id.input_password) as EditText
         cpasswordText = view.findViewById<View>(R.id.confirminput_password) as EditText
         signUpButton = view.findViewById<View>(R.id.link_signup) as Button
+
         signUpButton!!.setOnClickListener {
 
             if (globalContext?.let { it1 -> ValidationUtil.isValidUsername(it1, usernameText.text.toString()) }!!) {
                 if (ValidationUtil.isValidPassword(globalContext as FragmentActivity, passwordText.text.toString())) {
-                    if (ValidationUtil.isValidConfirmPassword(globalContext as FragmentActivity, passwordText.text.toString())) {
+                    if (ValidationUtil.isValidConfirmPassword(globalContext as FragmentActivity, cpasswordText.text.toString())) {
                         if (ValidationUtil.ismatchPassword(globalContext as FragmentActivity, passwordText.text.toString(),cpasswordText.text.toString())) {
                            val accountresult=userViewModel!!.createUser(
                                 usernameText!!.text.toString(),
@@ -44,6 +45,7 @@ class registerFragment : Fragment(R.layout.fragment_register) {
                             )
                             print("accountresult is $accountresult")
                             if(accountresult.equals(null)){
+
                                 ValidationUtil.showToast(
                                     globalContext as FragmentActivity,
                                     "Account not Created..!! Try Again")
@@ -66,6 +68,7 @@ class registerFragment : Fragment(R.layout.fragment_register) {
         super.onCreate(savedInstanceState)
         globalContext = this.getActivity();
         userViewModel = ViewModelProviders.of(this, globalContext?.let { UserViewModelFactory(it) }).get(UserViewModel::class.java)
+
 
 
     }

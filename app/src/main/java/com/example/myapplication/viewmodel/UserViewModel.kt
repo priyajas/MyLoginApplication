@@ -23,7 +23,7 @@ class UserViewModel(context:Context) : ViewModel() {
         return result
     }
 
-    internal fun checkValidLogin(username: String, password: String): LiveData<MutableList<UserAccount>> {
+    internal fun checkValidLogin(username: String, password: String): Boolean {
         return userRepository.isValidAccount(username, password)
     }
 
