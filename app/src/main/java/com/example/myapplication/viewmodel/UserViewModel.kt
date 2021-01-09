@@ -19,11 +19,12 @@ class UserViewModel(context:Context) : ViewModel() {
     }
 
     internal fun  createUser(username: String, password: String): Long {
+        println("userviewmodel :$username and $password")
         val result =userRepository.insertUser(username, password)
         return result
     }
 
-    internal fun checkValidLogin(username: String, password: String): Boolean {
+    internal fun checkValidLogin(username: String, password: String): UserAccount {
         return userRepository.isValidAccount(username, password)
     }
 

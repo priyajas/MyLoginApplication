@@ -7,18 +7,16 @@ import com.example.myapplication.model.entity.UserAccount
 class UserRepository private constructor(private val userAccountDao: UserAccountDao) {
     private val userAccountLiveData: LiveData<UserAccount>? = null
 
-    fun isValidAccount(username: String, password: String): Boolean{
-
-        val userAccount = userAccountDao.getAccount(username)
-       println("userrespository $userAccount")
-        if(userAccount==null)
-            return false
-        else
-        return userAccount.password==password
+    fun isValidAccount(username: String, password: String): UserAccount {
+        val result=userAccountDao.getAccount(username,password)
+        println("Result is $result")
+        return result
     }
 
     fun insertUser(username: String, password: String): Long {
        val account = UserAccount()
+        account.username=username
+        account.password=password
         return userAccountDao.insert(account)
     }
 

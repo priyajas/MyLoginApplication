@@ -43,7 +43,6 @@ class registerFragment : Fragment(R.layout.fragment_register) {
                                 usernameText!!.text.toString(),
                                 passwordText!!.text.toString()
                             )
-                            print("accountresult is $accountresult")
                             if(accountresult.equals(null)){
 
                                 ValidationUtil.showToast(

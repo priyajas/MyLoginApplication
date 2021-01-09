@@ -9,7 +9,6 @@ import androidx.room.PrimaryKey
 class UserAccount() {
 
     @PrimaryKey(autoGenerate = true)
-    @NonNull
     @ColumnInfo(name="userid")
     var ID:Int?=null
 

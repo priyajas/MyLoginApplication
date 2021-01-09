@@ -53,7 +53,8 @@ class loginFragment : Fragment(R.layout.fragment_login) {
                         usernameText!!.text.toString(),
                         passwordText!!.text.toString()
                     )
-                    if (true) {
+                    println("userdata is $userdata")
+                    if (userdata!=null) {
                         ValidationUtil.showToast(
                             globalContext as FragmentActivity,
                             "Successfully Logged in!"
